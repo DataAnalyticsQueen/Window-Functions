@@ -1,0 +1,22 @@
+SELECT *
+
+FROM Employee_Demographics;
+SELECT dem.first_name,dem.last_name,gender,AVG(salary)OVER(PARTITION BY gender)
+FROM Employee_demographics dem 
+JOIN Employee_salary sal
+ON dem.employee.id=sal.employee_id;
+GROUP BY dem.first_name,dem.last_name,gender,salary
+
+
+
+
+
+SELECT dem.employee_id,dem.first_name,dem.last_name,gender,salary,
+ROW_NUMBER()OVER(PARTITION BY gender ORDER BY salary DESC)
+RANK ()OVER(PARTITION BY gender ORDER BY salary DESC)rank_num
+FROM Employee_demographics dem 
+JOIN Employee_salary sal
+ON dem.employee.id=sal.employee_id;
+--Window Functions 
+
+
